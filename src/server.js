@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import { resolvers, typeDefs } from './schema';
 import dotenv from 'dotenv';
+import { getUser } from './utils/user.utils';
 dotenv.config();
 
 const PORT = process.env.PORT || 4000;
@@ -13,7 +14,15 @@ const app = express()
 app.use(morgan('dev'));
 app.use(cors());
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: async ({ req }) => {
+    return {
+      loggedInUser: await getUser(req.headers.token)
+    }
+  }
+});
 
 server.applyMiddleware({ app });
 
