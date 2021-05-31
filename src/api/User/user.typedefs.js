@@ -18,22 +18,9 @@ export default gql`
     location: String!
     avatarUrl: String
     githubUsername: String
+    following: [User]
+    followedBy: [User]
     createdAt: String!
     updatedAt: String!
-  },
-  type Query {
-    seeUsers: [User],
-    seeProfile(username: String): User
-  },
-  type Mutation {
-    createAccount(username: String!,
-      email: String!,
-      name: String!,
-      location: String,
-      password: String!,
-      avatarUrl: String,
-      githubUsername: String): MutationResult!,
-    login(username: String!, password: String!): LoginResult!,
-    editProfile(username: String, password: String, name: String, location: String, avatarUrl: Upload): MutationResult!,
   }
 `;
