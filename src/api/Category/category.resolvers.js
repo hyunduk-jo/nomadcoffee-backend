@@ -2,6 +2,7 @@ import client from "../../client";
 
 export default {
   Category: {
-    totalShops: ({ id }) => client.coffeeShop.count({ where: { categories: { some: { id } } } })
+    totalShops: ({ id }) => client.coffeeShop.count({ where: { categories: { some: { id } } } }),
+    shops: ({ id }) => client.category.findUnique({ where: { id } }).shops()
   }
 }

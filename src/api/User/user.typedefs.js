@@ -18,8 +18,13 @@ export default gql`
     location: String!
     avatarUrl: String
     githubUsername: String
-    following: [User]
-    followedBy: [User]
+    coffeeShops: [CoffeeShop]
+    following(page: Int!): [User]
+    followedBy(page: Int!): [User]
+    totalFollowedBy: Int!
+    totalFollowing: Int!
+    isMe: Boolean!
+    isFollowing: Boolean!
     createdAt: String!
     updatedAt: String!
   }
