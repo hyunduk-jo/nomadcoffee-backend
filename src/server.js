@@ -17,6 +17,7 @@ app.use(cors());
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  playground: true,
   context: async ({ req }) => {
     return {
       loggedInUser: await getUser(req.headers.token)
