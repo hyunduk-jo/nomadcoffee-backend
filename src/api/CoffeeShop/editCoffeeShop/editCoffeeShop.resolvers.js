@@ -14,7 +14,7 @@ export default {
           }
         }
         let photoUrl = undefined;
-        if (photos) {
+        if (photos[0]) {
           photoUrl = await uploadToS3("coffeeShopPhoto", photos, loggedInUser.username);
         }
         const slug = name.toLowerCase().split(" ").join("_");

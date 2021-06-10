@@ -14,5 +14,7 @@ export default gql`
     user:       User
     photos:     [CoffeeShopPhoto]
     categories: [Category]
+    totalShopNum: Int!
+    isMyShop: Boolean!
   }
 `;
