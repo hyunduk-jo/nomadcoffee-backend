@@ -10,8 +10,9 @@ export default {
       const shop = await client.coffeeShop.findUnique({ where: { id } });
       if (loggedInUser) {
         return shop.userId === loggedInUser.id
+      } else {
+        return false
       }
-      return false;
     }
   }
 }

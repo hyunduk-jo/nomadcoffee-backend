@@ -6,8 +6,15 @@ export const getUser = async (token) => {
     if (!token) {
       return null;
     }
-    const { id } = JWT.verify(token, process.env.JWT_SECRET);
-    const user = await client.user.findUnique({ where: { id } });
+    /* const { id } = JWT.verify(token, process.env.JWT_SECRET);
+    console.log(id); */
+    const result = JWT.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) {
+        return null
+      }
+      return decoded
+    })
+    const user = await client.user.findUnique({ where: { id: result.id } });
     if (!user) {
       return null;
     }
